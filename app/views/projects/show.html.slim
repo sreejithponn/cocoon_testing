@@ -17,14 +17,17 @@ table.table
       = (@project.owner ? @project.owner.try(:name) : 'no owner yet')
 
 
-h3 Tasks
+h3 Quote Processes
 
 p
   | List all the tasks here
 
-table.table
+table.table 
+
   -@project.tasks.each do |task|
     tr
+      td= task.inhouseprocess.name
+      td= task.hourlyrate
       td= task.name
       td= task.description
       td= task.done

@@ -57,5 +57,17 @@ $(document).ready(function() {
         task.fadeOut('slow');
     })
 
-    //$('body').tabs();
+document.getElementById("project_name").addEventListener("click", function(){
+    alert("Hello World!");
 });
+
+    
+
+    //$('body').tabs();
+
+
+
+
+});
+
+

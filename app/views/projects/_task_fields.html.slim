@@ -1,5 +1,7 @@
 .nested-fields.well.well-compact
   .form-inline
+    = f.association :inhouseprocess , {onchange:"someFunction(#{50})"}
+    = f.input :hourlyrate,:input_html => { :value => :inhouseprocess }, :label => false, class: 'form-control'
     = f.input :name, :label => false, :placeholder => 'name the task', class: 'form-control'
     = f.input :description, :label => false, :placeholder => 'add a description', class: 'form-control'
     = f.input :done, :as => :boolean

@@ -1,3 +1,13 @@
+var getHourlyRate = function() {
+    var dropdown=$(this);
+    processId=dropdown.val();
+    var hourlyRate=null;
+    $.ajax({url: "/inhouseprocess/"+processId, success: function(result){
+        hourlyRate = result;
+        dropdown.closest("div.form-inline").find("div.project_tasks_hourlyrate input").val(hourlyRate);
+    }});
+};
+
 $(document).ready(function() {
     $("#owner a.add_fields").
       data("association-insertion-position", 'before').
@@ -51,16 +61,10 @@ $(document).ready(function() {
     $('#tasks').bind('cocoon:after-insert', function(e, added_task) {
         //added_task.css("background","red");
         console.log("task has been added");
-        added_task.find("select").change(function(){
-            var dropdown=$(this);
-            processId=dropdown.val();
-            var hourlyRate=null;
-            $.ajax({url: "/inhouseprocess/"+processId, success: function(result){
-                hourlyRate = result;
-                dropdown.closest("div.form-inline").find("div.project_tasks_hourlyrate input").val(hourlyRate);
-            }});
-        });
+        added_task.find("select").change(getHourlyRate);
     });
+
+    $(".project_tasks_inhouseprocess select").change(getHourlyRate);
 
     $('#tasks').bind('cocoon:before-remove', function(e, task) {
         $(this).data('remove-timeout', 1000);
